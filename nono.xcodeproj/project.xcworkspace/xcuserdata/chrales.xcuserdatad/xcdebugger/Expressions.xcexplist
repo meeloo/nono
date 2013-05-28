@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[nonoTests testXEntries]:nonoTests.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[NonoGrid getXEntries]:NonoGrid.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_grid[x][y]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

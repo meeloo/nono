@@ -16,7 +16,7 @@
     if (self != nil)
     {
         _color = nncEmpty();
-        _count = 1;
+        _count = 0;
     }
     return self;
 }
@@ -24,6 +24,16 @@
 + (id)entry
 {
     return [[[NonoEntry alloc] init] autorelease];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isMemberOfClass:[NonoEntry class]])
+    {
+        NonoEntry* entry = (NonoEntry*)object;
+        return (nncEqual(self.color, entry.color) && (self.count == entry.count));
+    }
+    return [super isEqual:object];
 }
 
 @end

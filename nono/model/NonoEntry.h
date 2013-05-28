@@ -16,4 +16,6 @@
 
 + (id)entry;
 
+- (BOOL) isEqual:(id)object;
+
 @end

@@ -25,7 +25,7 @@
     {
         _width = width;
         _height = height;
-        _grid = calloc(_width, sizeof(NonoColor));
+        _grid = calloc(_width, sizeof(NonoColor*));
         for (NSUInteger x = 0; x < width; x++)
         {
             _grid[x] = calloc(_height, sizeof(NonoColor));
@@ -49,6 +49,18 @@
     }
     return self;
 }
+
+
+- (void)dealloc
+{
+    for (NSUInteger x = 0; x < self.width; x++)
+    {
+        free(_grid[x]);
+    }
+    free(_grid);
+    [super dealloc];
+}
+
 
 - (BOOL)isEqualToGrid:(NonoGrid*)aGrid
 {
@@ -103,22 +115,21 @@
     for (NSUInteger x = 0; x < width; x++)
     {
         NonoEntry* currentEntry = [NonoEntry entry];
+        currentEntry.color = _grid[x][0];
         NSMutableArray* colEntries = [NSMutableArray arrayWithCapacity:height];
         for (NSUInteger y = 0; y < height; y++)
         {
-            if (nncEqual(_grid[x][y], currentEntry.color))
-            {
-                currentEntry.count++;
-            }
-            else
+            if (!nncEqual(_grid[x][y], currentEntry.color))
             {
                 if (!currentEntry.color.empty)
                 {
                     [colEntries addObject:currentEntry];
                 }
+                
                 currentEntry = [NonoEntry entry];
                 currentEntry.color = _grid[x][y];
             }
+            currentEntry.count++;
         }
         
         if (!currentEntry.color.empty)
@@ -139,14 +150,11 @@
     for (NSUInteger y = 0; y < height; y++)
     {
         NonoEntry* currentEntry = [NonoEntry entry];
+        currentEntry.color = _grid[0][y];
         NSMutableArray* rowEntries = [NSMutableArray arrayWithCapacity:width];
         for (NSUInteger x = 0; x < width; x++)
         {
-            if (nncEqual(_grid[x][y], currentEntry.color))
-            {
-                currentEntry.count++;
-            }
-            else
+            if (!nncEqual(_grid[x][y], currentEntry.color))
             {
                 if (!currentEntry.color.empty)
                 {
@@ -156,6 +164,7 @@
                 currentEntry = [NonoEntry entry];
                 currentEntry.color = _grid[x][y];
             }
+            currentEntry.count++;
         }
         
         if (!currentEntry.color.empty)
@@ -169,6 +178,11 @@
 }
 
 #ifdef DEBUG
++ (void)initialize
+{
+    srandomdev();
+}
+
 - (id)initDebugGrid
 {
     self = [self initWithWidth:5 andHeight:5];
@@ -188,7 +202,7 @@
         
         _grid[2][0] = nnc(0, 0, 0);
         _grid[2][1] = nnc(0, 0, 0);
-        _grid[2][2] = nnc(0, 0, 0);
+        _grid[2][2] = nncEmpty();
         _grid[2][3] = nnc(0, 0, 0);
         _grid[2][4] = nnc(0, 0, 0);
         
@@ -206,6 +220,23 @@
     }
     return self;
 }
+
+- (id)initRandomGrid
+{
+    self = [self initWithWidth:random()%45+5 andHeight:random()%45+5];
+    if (self != nil)
+    {
+        for (NSUInteger x = 0; x < _width; x++)
+        {
+            for (NSUInteger y = 0; y < _height; y++)
+            {
+                _grid[x][y] = (random() & 1) ? nncEmpty() : nnc(0, 0, 0);
+            }
+        }
+    }
+    return self;
+}
+
 #endif
 
 @end

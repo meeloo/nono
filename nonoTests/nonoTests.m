@@ -9,6 +9,7 @@
 #import "nonoTests.h"
 #import "NonoGrid.h"
 #import "NonoColor.h"
+#import "NonoSolver.h"
 
 @implementation nonoTests
 
@@ -45,7 +46,7 @@
         STFail(@"Color in (0, 0) not empty.");
     }
     
-    color = [grid getColorAtX:2 andY:2];
+    color = [grid getColorAtX:2 andY:0];
     if (!nncEqual(color, nnc(0, 0, 0)))
     {
         STFail(@"Color in (0, 0) not (0, 0, 0).");
@@ -66,7 +67,38 @@
 - (void)testXEntries
 {
     NonoGrid* grid = [[[NonoGrid alloc] initDebugGrid] autorelease];
-    NSArray* entries = [grid getXEntries];
+    NSArray* xEntries = [grid getXEntries];
+    STFail(@"TODO - add X entries test");
 }
+
+- (void)testYEntries
+{
+    NonoGrid* grid = [[[NonoGrid alloc] initDebugGrid] autorelease];
+    NSArray* yEntries = [grid getYEntries];
+    STFail(@"TODO - add Y entries test.");
+}
+
+- (void)testIsSolvedByGrid
+{
+    NonoGrid* grid = [[[NonoGrid alloc] initDebugGrid] autorelease];
+    NonoSolver* solver = [[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]];
+    STAssertTrue([solver isSolvedByGrid:grid], @"Debug grid does not solve itself.");
+}
+
+- (void)testIsSolvedByGridRandom
+{
+    // Test with a hundred thousand random grids
+    for (NSUInteger i = 0; i < 1E5; i++)
+    {
+        @autoreleasepool
+        {
+            NonoGrid* grid = [[[NonoGrid alloc] initRandomGrid] autorelease];
+            NonoSolver* solver = [[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]];
+            STAssertTrue([solver isSolvedByGrid:grid], @"Random grid does not solve itself.");
+        }
+    }
+}
+
+
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A145BAA17556A030028FF7F /* NonoSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65F017556181002ED748 /* NonoSolver.m */; };
 		9A5AB76F1755321E00735EDB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7651755321E00735EDB /* Default-568h@2x.png */; };
 		9A5AB7701755321E00735EDB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7661755321E00735EDB /* Default.png */; };
 		9A5AB7711755321E00735EDB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7671755321E00735EDB /* Default@2x.png */; };
@@ -332,6 +333,7 @@
 				9AFD65ED17555752002ED748 /* NonoGrid.m in Sources */,
 				9AFD65EE17555752002ED748 /* ViewController.m in Sources */,
 				9AFD65E617555624002ED748 /* nonoTests.m in Sources */,
+				9A145BAA17556A030028FF7F /* NonoSolver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +511,7 @@
 				9AFD65EA17555624002ED748 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -18,6 +18,7 @@
 - (id)initWithGrid:(NonoGrid*)aGrid;
 #ifdef DEBUG
 - (id)initDebugGrid;
+- (id)initRandomGrid;
 #endif
 
 - (BOOL)isEqualToGrid:(NonoGrid*)aGrid;

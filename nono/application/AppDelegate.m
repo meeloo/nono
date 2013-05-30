@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
-#import "NonoGrid.h"
-#import "NonoSolver.h"
 
 @implementation AppDelegate
 
@@ -23,7 +21,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    /*NonoGrid* grid = [NonoGrid randomGrid];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]] autorelease];
+    NonoGrid* solution = [solver solve];
+    NSAssert([grid isEqualToGrid:solution], @"Solution does is not equal to debug grid.");*/
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.

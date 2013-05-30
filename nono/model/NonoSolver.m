@@ -53,44 +53,47 @@
     {
         for (NSUInteger x = 0; x < width; x++)
         {
-            NSEnumerator* entryEnumerator = [self.xEntries[x] objectEnumerator];
-            
-            NonoEntry* currentEntry = [NonoEntry entry];
-            currentEntry.color = [grid getColorAtX:x andY:0];
-            for (NSUInteger y = 0; y < height; y++)
+            @autoreleasepool
             {
-                NonoColor color = [grid getColorAtX:x andY:y];
-                if (!nncEqual(color, currentEntry.color))
+                NSEnumerator* entryEnumerator = [self.xEntries[x] objectEnumerator];
+                
+                NonoEntry* currentEntry = [NonoEntry entry];
+                currentEntry.color = [grid getColorAtX:x andY:0];
+                for (NSUInteger y = 0; y < height; y++)
                 {
-                    if (!currentEntry.color.empty)
+                    NonoColor color = [grid getColorAtX:x andY:y];
+                    if (!nncEqual(color, currentEntry.color))
                     {
-                        //new color - check currentEntry against grid entry
-                        NonoEntry* gridEntry = [entryEnumerator nextObject];
-                        if (![gridEntry isEqual:currentEntry])
+                        if (!currentEntry.color.empty)
                         {
-                            return NO;
+                            //new color - check currentEntry against grid entry
+                            NonoEntry* gridEntry = [entryEnumerator nextObject];
+                            if (![gridEntry isEqual:currentEntry])
+                            {
+                                return NO;
+                            }
                         }
+                        
+                        currentEntry = [NonoEntry entry];
+                        currentEntry.color = color;
                     }
                     
-                    currentEntry = [NonoEntry entry];
-                    currentEntry.color = color;
+                    currentEntry.count++;
                 }
                 
-                currentEntry.count++;
-            }
-            
-            NonoEntry* gridEntry;
-            if (gridEntry = [entryEnumerator nextObject])
-            {
-                if (![gridEntry isEqual:currentEntry])
+                NonoEntry* gridEntry;
+                if (gridEntry = [entryEnumerator nextObject])
+                {
+                    if (![gridEntry isEqual:currentEntry])
+                    {
+                        return NO;
+                    }
+                }
+                
+                if ([entryEnumerator nextObject] != nil)
                 {
                     return NO;
                 }
-            }
-            
-            if ([entryEnumerator nextObject] != nil)
-            {
-                return NO;
             }
         }
     }
@@ -98,44 +101,47 @@
     {
         for (NSUInteger y = 0; y < height; y++)
         {
-            NSEnumerator* entryEnumerator = [self.yEntries[y] objectEnumerator];
-            
-            NonoEntry* currentEntry = [NonoEntry entry];
-            currentEntry.color = [grid getColorAtX:0 andY:y];
-            for (NSUInteger x = 0; x < width; x++)
+            @autoreleasepool
             {
-                NonoColor color = [grid getColorAtX:x andY:y];
-                if (!nncEqual(color, currentEntry.color))
+                NSEnumerator* entryEnumerator = [self.yEntries[y] objectEnumerator];
+                
+                NonoEntry* currentEntry = [NonoEntry entry];
+                currentEntry.color = [grid getColorAtX:0 andY:y];
+                for (NSUInteger x = 0; x < width; x++)
                 {
-                    if (!currentEntry.color.empty)
+                    NonoColor color = [grid getColorAtX:x andY:y];
+                    if (!nncEqual(color, currentEntry.color))
                     {
-                        //new color - check currentEntry against grid entry
-                        NonoEntry* gridEntry = [entryEnumerator nextObject];
-                        if (![gridEntry isEqual:currentEntry])
+                        if (!currentEntry.color.empty)
                         {
-                            return NO;
+                            //new color - check currentEntry against grid entry
+                            NonoEntry* gridEntry = [entryEnumerator nextObject];
+                            if (![gridEntry isEqual:currentEntry])
+                            {
+                                return NO;
+                            }
                         }
+                        
+                        currentEntry = [NonoEntry entry];
+                        currentEntry.color = color;
                     }
                     
-                    currentEntry = [NonoEntry entry];
-                    currentEntry.color = color;
+                    currentEntry.count++;
                 }
                 
-                currentEntry.count++;
-            }
-            
-            NonoEntry* gridEntry;
-            if (gridEntry = [entryEnumerator nextObject])
-            {
-                if (![gridEntry isEqual:currentEntry])
+                NonoEntry* gridEntry;
+                if (gridEntry = [entryEnumerator nextObject])
+                {
+                    if (![gridEntry isEqual:currentEntry])
+                    {
+                        return NO;
+                    }
+                }
+                
+                if ([entryEnumerator nextObject] != nil)
                 {
                     return NO;
                 }
-            }
-            
-            if ([entryEnumerator nextObject] != nil)
-            {
-                return NO;
             }
         }
     }

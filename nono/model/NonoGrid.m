@@ -132,7 +132,7 @@
     NSMutableArray* xEntries = [NSMutableArray arrayWithCapacity:width];
     for (NSUInteger x = 0; x < width; x++)
     {
-        NonoEntry* currentEntry = [NonoEntry entry];
+        NonoEntry* currentEntry = [[NonoEntry alloc] init];
         currentEntry.color = _grid[x][0];
         NSMutableArray* colEntries = [NSMutableArray arrayWithCapacity:height];
         for (NSUInteger y = 0; y < height; y++)
@@ -144,7 +144,8 @@
                     [colEntries addObject:currentEntry];
                 }
                 
-                currentEntry = [NonoEntry entry];
+                [currentEntry release];
+                currentEntry = [[NonoEntry alloc] init];
                 currentEntry.color = _grid[x][y];
             }
             currentEntry.count++;
@@ -156,6 +157,7 @@
         }
         
         [xEntries addObject:colEntries];
+        [currentEntry release];
     }
     return xEntries;
 }
@@ -167,7 +169,7 @@
     NSMutableArray* yEntries = [NSMutableArray arrayWithCapacity:height];
     for (NSUInteger y = 0; y < height; y++)
     {
-        NonoEntry* currentEntry = [NonoEntry entry];
+        NonoEntry* currentEntry = [[NonoEntry alloc] init];
         currentEntry.color = _grid[0][y];
         NSMutableArray* rowEntries = [NSMutableArray arrayWithCapacity:width];
         for (NSUInteger x = 0; x < width; x++)
@@ -179,7 +181,8 @@
                     [rowEntries addObject:currentEntry];
                 }
                 
-                currentEntry = [NonoEntry entry];
+                [currentEntry release];
+                currentEntry = [[NonoEntry alloc] init];
                 currentEntry.color = _grid[x][y];
             }
             currentEntry.count++;
@@ -191,11 +194,48 @@
         }
         
         [yEntries addObject:rowEntries];
+        [currentEntry release];
     }
     return yEntries;
 }
 
-#ifdef DEBUG
++ (id)randomGrid
+{
+    NonoGrid* grid = [self.class gridWithWidth:(random()%45)+5 andHeight:(random())%45+5];
+    if (grid != nil)
+    {
+        for (NSUInteger x = 0; x < grid->_width; x++)
+        {
+            for (NSUInteger y = 0; y < grid->_height; y++)
+            {
+                grid->_grid[x][y] = (random() & 1) ? nncEmpty() : nnc(0, 0, 0);
+            }
+        }
+    }
+    return grid;
+}
+
+- (void)print
+{
+    NSUInteger width = self.width;
+    NSUInteger height = self.height;
+    for (NSUInteger y = 0; y < height; y++)
+    {
+        for (NSUInteger x = 0; x < width; x++)
+        {
+            if (nncEqual(_grid[x][y], nncEmpty()))
+            {
+                printf(" -");
+            }
+            else
+            {
+                printf(" O");
+            }
+        }
+        printf("\n");
+    }
+}
+
 + (void)initialize
 {
     srandomdev();
@@ -238,44 +278,5 @@
     }
     return grid;
 }
-
-+ (id)randomGrid
-{
-    NonoGrid* grid = [self.class gridWithWidth:(random()%45)+5 andHeight:(random())%45+5];
-    if (grid != nil)
-    {
-        for (NSUInteger x = 0; x < grid->_width; x++)
-        {
-            for (NSUInteger y = 0; y < grid->_height; y++)
-            {
-                grid->_grid[x][y] = (random() & 1) ? nncEmpty() : nnc(0, 0, 0);
-            }
-        }
-    }
-    return grid;
-}
-
-- (void)print
-{
-    NSUInteger width = self.width;
-    NSUInteger height = self.height;
-    for (NSUInteger y = 0; y < height; y++)
-    {
-        for (NSUInteger x = 0; x < width; x++)
-        {
-            if (nncEqual(_grid[x][y], nncEmpty()))
-            {
-                printf(" -");
-            }
-            else
-            {
-                printf(" O");
-            }
-        }
-        printf("\n");
-    }
-}
-
-#endif
 
 @end

@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#import "NonoGrid.h"
+#import "NonoSolver.h"
+
 @interface ViewController ()
 
 @end
@@ -24,6 +27,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)start:(id)sender
+{
+    NonoGrid* grid = [NonoGrid randomGrid];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]] autorelease];
+    NonoGrid* solution = [solver solve];
+    NSAssert([grid isEqualToGrid:solution], @"Solution does is not equal to debug grid.");
 }
 
 @end

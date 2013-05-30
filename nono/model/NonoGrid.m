@@ -18,6 +18,16 @@
 
 @implementation NonoGrid
 
++ (id)gridWithWidth:(NSUInteger)width andHeight:(NSUInteger)height
+{
+    return [[[self.class alloc] initWithWidth:width andHeight:height] autorelease];
+}
+
++ (id)gridWithGrid:(NonoGrid*)aGrid
+{
+    return [[[self.class alloc] initWithGrid:aGrid] autorelease];
+}
+
 -(id)initWithWidth:(NSUInteger)width andHeight:(NSUInteger)height
 {
     self = [super init];
@@ -29,6 +39,14 @@
         for (NSUInteger x = 0; x < width; x++)
         {
             _grid[x] = calloc(_height, sizeof(NonoColor));
+        }
+        
+        for (NSUInteger x = 0; x < _width; x++)
+        {
+            for (NSUInteger y = 0; y < _height; y++)
+            {
+                self->_grid[x][y] = nncEmpty();
+            }
         }
     }
     return self;
@@ -183,58 +201,79 @@
     srandomdev();
 }
 
-- (id)initDebugGrid
++ (id)debugGrid
 {
-    self = [self initWithWidth:5 andHeight:5];
-    if (self != nil)
+    NonoGrid* grid = [self.class gridWithWidth:5 andHeight:5];
+    if (grid != nil)
     {
-        _grid[0][0] = nncEmpty();
-        _grid[0][1] = nncEmpty();
-        _grid[0][2] = nnc(0, 0, 0);
-        _grid[0][3] = nncEmpty();
-        _grid[0][4] = nncEmpty();
+        grid->_grid[0][0] = nncEmpty();
+        grid->_grid[0][1] = nncEmpty();
+        grid->_grid[0][2] = nnc(0, 0, 0);
+        grid->_grid[0][3] = nncEmpty();
+        grid->_grid[0][4] = nncEmpty();
         
-        _grid[1][0] = nncEmpty();
-        _grid[1][1] = nnc(0, 0, 0);
-        _grid[1][2] = nnc(0, 0, 0);
-        _grid[1][3] = nnc(0, 0, 0);
-        _grid[1][4] = nncEmpty();
+        grid->_grid[1][0] = nncEmpty();
+        grid->_grid[1][1] = nnc(0, 0, 0);
+        grid->_grid[1][2] = nnc(0, 0, 0);
+        grid->_grid[1][3] = nnc(0, 0, 0);
+        grid->_grid[1][4] = nncEmpty();
         
-        _grid[2][0] = nnc(0, 0, 0);
-        _grid[2][1] = nnc(0, 0, 0);
-        _grid[2][2] = nncEmpty();
-        _grid[2][3] = nnc(0, 0, 0);
-        _grid[2][4] = nnc(0, 0, 0);
+        grid->_grid[2][0] = nnc(0, 0, 0);
+        grid->_grid[2][1] = nnc(0, 0, 0);
+        grid->_grid[2][2] = nncEmpty();
+        grid->_grid[2][3] = nnc(0, 0, 0);
+        grid->_grid[2][4] = nnc(0, 0, 0);
         
-        _grid[3][0] = nncEmpty();
-        _grid[3][1] = nnc(0, 0, 0);
-        _grid[3][2] = nnc(0, 0, 0);
-        _grid[3][3] = nnc(0, 0, 0);
-        _grid[3][4] = nncEmpty();
+        grid->_grid[3][0] = nncEmpty();
+        grid->_grid[3][1] = nnc(0, 0, 0);
+        grid->_grid[3][2] = nnc(0, 0, 0);
+        grid->_grid[3][3] = nnc(0, 0, 0);
+        grid->_grid[3][4] = nncEmpty();
         
-        _grid[4][0] = nncEmpty();
-        _grid[4][1] = nncEmpty();
-        _grid[4][2] = nnc(0, 0, 0);
-        _grid[4][3] = nncEmpty();
-        _grid[4][4] = nncEmpty();
+        grid->_grid[4][0] = nncEmpty();
+        grid->_grid[4][1] = nncEmpty();
+        grid->_grid[4][2] = nncEmpty();
+        grid->_grid[4][3] = nncEmpty();
+        grid->_grid[4][4] = nncEmpty();
     }
-    return self;
+    return grid;
 }
 
-- (id)initRandomGrid
++ (id)randomGrid
 {
-    self = [self initWithWidth:random()%45+5 andHeight:random()%45+5];
-    if (self != nil)
+    NonoGrid* grid = [self.class gridWithWidth:(random()%45)+5 andHeight:(random())%45+5];
+    if (grid != nil)
     {
-        for (NSUInteger x = 0; x < _width; x++)
+        for (NSUInteger x = 0; x < grid->_width; x++)
         {
-            for (NSUInteger y = 0; y < _height; y++)
+            for (NSUInteger y = 0; y < grid->_height; y++)
             {
-                _grid[x][y] = (random() & 1) ? nncEmpty() : nnc(0, 0, 0);
+                grid->_grid[x][y] = (random() & 1) ? nncEmpty() : nnc(0, 0, 0);
             }
         }
     }
-    return self;
+    return grid;
+}
+
+- (void)print
+{
+    NSUInteger width = self.width;
+    NSUInteger height = self.height;
+    for (NSUInteger y = 0; y < height; y++)
+    {
+        for (NSUInteger x = 0; x < width; x++)
+        {
+            if (nncEqual(_grid[x][y], nncEmpty()))
+            {
+                printf(" -");
+            }
+            else
+            {
+                printf(" O");
+            }
+        }
+        printf("\n");
+    }
 }
 
 #endif

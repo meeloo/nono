@@ -14,12 +14,11 @@
 @property (nonatomic, readonly) NSUInteger width;
 @property (nonatomic, readonly) NSUInteger height;
 
++ (id)gridWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
++ (id)gridWithGrid:(NonoGrid*)aGrid;
+
 - (id)initWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 - (id)initWithGrid:(NonoGrid*)aGrid;
-#ifdef DEBUG
-- (id)initDebugGrid;
-- (id)initRandomGrid;
-#endif
 
 - (BOOL)isEqualToGrid:(NonoGrid*)aGrid;
 
@@ -28,5 +27,15 @@
 
 - (NSArray*)getXEntries;
 - (NSArray*)getYEntries;
+
+
+#ifdef DEBUG
+
++ (id)debugGrid;
++ (id)randomGrid;
+
+- (void)print;
+
+#endif
 
 @end

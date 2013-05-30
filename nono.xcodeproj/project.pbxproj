@@ -26,7 +26,6 @@
 		9AFD65DB17555624002ED748 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFD65B9175554A7002ED748 /* SenTestingKit.framework */; };
 		9AFD65DC17555624002ED748 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08851754C8FA00391436 /* UIKit.framework */; };
 		9AFD65DD17555624002ED748 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08871754C8FA00391436 /* Foundation.framework */; };
-		9AFD65E317555624002ED748 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD65E117555624002ED748 /* InfoPlist.strings */; };
 		9AFD65E617555624002ED748 /* nonoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65E517555624002ED748 /* nonoTests.m */; };
 		9AFD65EC17555752002ED748 /* NonoEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB789175533CC00735EDB /* NonoEntry.m */; };
 		9AFD65ED17555752002ED748 /* NonoGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65AC17553BB6002ED748 /* NonoGrid.m */; };
@@ -289,7 +288,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AFD65E317555624002ED748 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

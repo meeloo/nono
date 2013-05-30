@@ -15,6 +15,12 @@
 @property (nonatomic, retain) NSArray* xEntries;
 @property (nonatomic, retain) NSArray* yEntries;
 
+@property (nonatomic, assign) NSUInteger width;
+@property (nonatomic, assign) NSUInteger height;
+
+@property (nonatomic, assign) BOOL isSolving;
+@property (nonatomic, assign) BOOL hasFoundSolution;
+
 @end
 
 @implementation NonoSolver
@@ -26,6 +32,8 @@
     {
         _xEntries = [xEntries retain];
         _yEntries = [yEntries retain];
+        _width = _xEntries.count;
+        _height = _yEntries.count;
     }
     return self;
 }
@@ -35,11 +43,6 @@
     [_xEntries release];
     [_yEntries release];
     [super dealloc];
-}
-
-- (NonoGrid*)solve
-{
-    
 }
 
 - (BOOL)isSolvedByGrid:(NonoGrid*)grid
@@ -140,17 +143,144 @@
     return YES;
 }
 
-- (BOOL)hasUniqueSolution
+- (NonoGrid*)solve
 {
-    NSUInteger width = self.xEntries.count;
-    NSUInteger height = self.yEntries.count;
+    self.isSolving = YES;
+    self.hasFoundSolution = NO;
     
-    NonoGrid* emptyGrid = [[[NonoGrid alloc] initWithWidth:width andHeight:height] autorelease];
-    [self fillRowsForGrid:emptyGrid minX:0 Y:0 currentEntry:0];
+    NonoGrid* grid = [NonoGrid gridWithWidth:self.width andHeight:self.height];
+    BOOL result = [self fillEntryForGrid:grid
+                                    minX:0
+                                       Y:0
+                            currentEntry:0];
+    
+    self.isSolving = NO;
+    return (result ? grid : nil);
 }
 
-- (void)fillRowsForGrid:(NonoGrid*)grid minX:(NSUInteger)minX Y:(NSUInteger)y currentEntry:(NSUInteger)currentEntryIndex
+- (BOOL)hasUniqueSolution
 {
+    self.isSolving = NO;
+    self.hasFoundSolution = NO;
+    NonoGrid* grid = [NonoGrid gridWithWidth:self.width andHeight:self.height];
+    return [self fillEntryForGrid:grid
+                             minX:0
+                                Y:0
+                     currentEntry:0];
+}
+
+- (BOOL)fillEntryForGrid:(NonoGrid*)grid minX:(NSUInteger)minX Y:(NSUInteger)y currentEntry:(NSUInteger)currentEntryIndex
+{
+    NSArray* entries = self.yEntries[y];
+    NonoEntry* currentEntry = entries[currentEntryIndex];
+    NonoEntry* previousEntry = (currentEntryIndex == 0) ? nil : entries[currentEntryIndex-1];
+    if ((previousEntry != nil) && nncEqual(previousEntry.color, currentEntry.color))
+    {
+        // Count one blank between two runs of the same color
+        minX++;
+    }
+    
+    if (minX > self.width)
+    {
+        // No more space for current entry
+        return NO;
+    }
+    
+    NSUInteger maxX = self.width + 1;
+    previousEntry = nil;
+    {
+        for (NSUInteger i = entries.count; i > currentEntryIndex; i--)
+        {
+            NonoEntry* entry = entries[i-1];
+            
+            if ((previousEntry != nil) && nncEqual(previousEntry.color, entry.color))
+            {
+                // Count one blank between two runs of the same color
+                maxX--;
+            }
+            
+            maxX -= entry.count;
+            
+            previousEntry = entry;
+        }
+        
+        if (maxX <= minX)
+        {
+            // No more space for remaining entries
+            return NO;
+        }
+    }
+    
+    for (NSUInteger x = minX; x < maxX; x++)
+    {
+        for (NSUInteger i = 0; i < currentEntry.count; i++)
+        {
+            [grid setColor:currentEntry.color AtX:x+i andY:y];
+        }
+        
+        if (y+1 == self.height && currentEntryIndex+1 == entries.count)
+        {
+            // This grid is done and has all entries filled
+            // Test it
+            if ([self isSolvedByGrid:grid])
+            {
+                if (self.hasFoundSolution)
+                {
+                    return NO;
+                }
+                else
+                {
+                    self.hasFoundSolution = YES;
+                    return YES;
+                }
+            }
+        }
+        else
+        {
+            if (currentEntryIndex+1 < entries.count)
+            {
+                if ([self fillEntryForGrid:grid
+                                      minX:(x+currentEntry.count)
+                                         Y:y
+                              currentEntry:(currentEntryIndex+1)])
+                {
+                    if (self.isSolving)
+                    {
+                        return YES;
+                    }
+                    else if (self.hasFoundSolution)
+                    {
+                        return NO;
+                    }
+                }
+            }
+            else
+            {
+                if ([self fillEntryForGrid:grid
+                                      minX:0
+                                         Y:y+1
+                              currentEntry:0])
+                {
+                    if (self.isSolving)
+                    {
+                        return YES;
+                    }
+                    else if (self.hasFoundSolution)
+                    {
+                        return NO;
+                    }
+                }
+            }
+        }
+        
+        // Erase temp entry
+        for (NSUInteger i = 0; i < currentEntry.count; i++)
+        {
+            [grid setColor:nncEmpty() AtX:x+i andY:y];
+        }
+    }
+    
+    return NO;
 }
 
 @end

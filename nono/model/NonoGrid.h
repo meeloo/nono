@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly) NSUInteger width;
 @property (nonatomic, readonly) NSUInteger height;
+@property (nonatomic, readonly) NonoColor** grid;
 
 + (id)debugGrid;
 + (id)randomGrid;
@@ -25,11 +26,8 @@
 
 - (BOOL)isEqualToGrid:(NonoGrid*)aGrid;
 
-- (void)setColor:(NonoColor)color AtX:(NSUInteger)x andY:(NSUInteger)y;
-- (NonoColor)getColorAtX:(NSUInteger)x andY:(NSUInteger)y;
-
-- (NSArray*)getXEntries;
-- (NSArray*)getYEntries;
+- (NSArray*)getColEntries;
+- (NSArray*)getRowEntries;
 
 - (void)print;
 

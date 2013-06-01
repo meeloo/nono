@@ -19,7 +19,7 @@ NonoColor;
 
 static inline NonoColor nncEmpty()
 {
-    NonoColor emptyColor = {0,0,0,YES};
+    static const NonoColor emptyColor = {0,0,0,YES};
     return emptyColor;
 }
 

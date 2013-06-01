@@ -10,9 +10,6 @@
 #import "NonoEntry.h"
 
 @interface NonoGrid ()
-{
-    NonoColor** _grid;
-}
 
 @end
 
@@ -71,7 +68,7 @@
 
 - (void)dealloc
 {
-    for (NSUInteger x = 0; x < self.width; x++)
+    for (NSUInteger x = 0; x < _width; x++)
     {
         free(_grid[x]);
     }
@@ -82,8 +79,8 @@
 
 - (BOOL)isEqualToGrid:(NonoGrid*)aGrid
 {
-    NSUInteger width = self.width;
-    NSUInteger height = self.height;
+    NSUInteger width = _width;
+    NSUInteger height = _height;
     for (NSUInteger x = 0; x < width; x++)
     {
         for (NSUInteger y = 0; y < height; y++)
@@ -97,13 +94,13 @@
     return YES;
 }
 
-- (void)setColor:(NonoColor)color AtX:(NSUInteger)x andY:(NSUInteger)y
+- (void)setColor:(NonoColor)color atX:(NSUInteger)x andY:(NSUInteger)y
 {
-    if (x >= self.width || y >= self.height)
+    if (x >= _width || y >= _height)
     {
         NSException* myException = [NSException
                                     exceptionWithName:NSRangeException
-                                    reason:[NSString stringWithFormat:@"position (%d,%d) outside of grid bounds [%d,%d]", x, y,self.width, self.height]
+                                    reason:[NSString stringWithFormat:@"position (%d,%d) outside of grid bounds [%d,%d]", x, y,_width, _height]
                                     userInfo:nil];
         @throw myException;
     }
@@ -113,11 +110,11 @@
 
 - (NonoColor)getColorAtX:(NSUInteger)x andY:(NSUInteger)y
 {
-    if (x >= self.width || y >= self.height)
+    if (x >= _width || y >= _height)
     {
         NSException* myException = [NSException
                                     exceptionWithName:NSRangeException
-                                    reason:[NSString stringWithFormat:@"position (%d,%d) outside of grid bounds [%d,%d]", x, y,self.width, self.height]
+                                    reason:[NSString stringWithFormat:@"position (%d,%d) outside of grid bounds [%d,%d]", x, y,_width, _height]
                                     userInfo:nil];
         @throw myException;
     }
@@ -125,23 +122,23 @@
     return _grid[x][y];
 }
 
-- (NSArray*)getXEntries
+- (NSArray*)getColEntries
 {
-    NSUInteger width = self.width;
-    NSUInteger height = self.height;
-    NSMutableArray* xEntries = [NSMutableArray arrayWithCapacity:width];
+    NSUInteger width = _width;
+    NSUInteger height = _height;
+    NSMutableArray* colEntries = [NSMutableArray arrayWithCapacity:width];
     for (NSUInteger x = 0; x < width; x++)
     {
         NonoEntry* currentEntry = [[NonoEntry alloc] init];
         currentEntry.color = _grid[x][0];
-        NSMutableArray* colEntries = [NSMutableArray arrayWithCapacity:height];
+        NSMutableArray* entries = [NSMutableArray arrayWithCapacity:height];
         for (NSUInteger y = 0; y < height; y++)
         {
             if (!nncEqual(_grid[x][y], currentEntry.color))
             {
                 if (!currentEntry.color.empty)
                 {
-                    [colEntries addObject:currentEntry];
+                    [entries addObject:currentEntry];
                 }
                 
                 [currentEntry release];
@@ -153,32 +150,32 @@
         
         if (!currentEntry.color.empty)
         {
-            [colEntries addObject:currentEntry];
+            [entries addObject:currentEntry];
         }
         
-        [xEntries addObject:colEntries];
+        [colEntries addObject:entries];
         [currentEntry release];
     }
-    return xEntries;
+    return colEntries;
 }
 
-- (NSArray*)getYEntries
+- (NSArray*)getRowEntries
 {
-    NSUInteger width = self.width;
-    NSUInteger height = self.height;
-    NSMutableArray* yEntries = [NSMutableArray arrayWithCapacity:height];
+    NSUInteger width = _width;
+    NSUInteger height = _height;
+    NSMutableArray* rowEntries = [NSMutableArray arrayWithCapacity:height];
     for (NSUInteger y = 0; y < height; y++)
     {
         NonoEntry* currentEntry = [[NonoEntry alloc] init];
         currentEntry.color = _grid[0][y];
-        NSMutableArray* rowEntries = [NSMutableArray arrayWithCapacity:width];
+        NSMutableArray* entries = [NSMutableArray arrayWithCapacity:width];
         for (NSUInteger x = 0; x < width; x++)
         {
             if (!nncEqual(_grid[x][y], currentEntry.color))
             {
                 if (!currentEntry.color.empty)
                 {
-                    [rowEntries addObject:currentEntry];
+                    [entries addObject:currentEntry];
                 }
                 
                 [currentEntry release];
@@ -190,18 +187,18 @@
         
         if (!currentEntry.color.empty)
         {
-            [rowEntries addObject:currentEntry];
+            [entries addObject:currentEntry];
         }
         
-        [yEntries addObject:rowEntries];
+        [rowEntries addObject:entries];
         [currentEntry release];
     }
-    return yEntries;
+    return rowEntries;
 }
 
 + (id)randomGrid
 {
-    NonoGrid* grid = [self.class gridWithWidth:(random()%45)+5 andHeight:(random())%45+5];
+    NonoGrid* grid = [self.class gridWithWidth:25 andHeight:25];
     if (grid != nil)
     {
         for (NSUInteger x = 0; x < grid->_width; x++)
@@ -217,8 +214,8 @@
 
 - (void)print
 {
-    NSUInteger width = self.width;
-    NSUInteger height = self.height;
+    NSUInteger width = _width;
+    NSUInteger height = _height;
     for (NSUInteger y = 0; y < height; y++)
     {
         for (NSUInteger x = 0; x < width; x++)
@@ -234,6 +231,7 @@
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 + (void)initialize
@@ -247,34 +245,34 @@
     if (grid != nil)
     {
         grid->_grid[0][0] = nncEmpty();
-        grid->_grid[0][1] = nncEmpty();
-        grid->_grid[0][2] = nnc(0, 0, 0);
-        grid->_grid[0][3] = nncEmpty();
-        grid->_grid[0][4] = nncEmpty();
+        grid->_grid[0][1] = nnc(0, 0, 0);
+        grid->_grid[0][2] = nncEmpty();
+        grid->_grid[0][3] = nnc(0, 0, 0);
+        grid->_grid[0][4] = nnc(0, 0, 0);
         
-        grid->_grid[1][0] = nncEmpty();
-        grid->_grid[1][1] = nnc(0, 0, 0);
+        grid->_grid[1][0] = nnc(0, 0, 0);
+        grid->_grid[1][1] = nncEmpty();
         grid->_grid[1][2] = nnc(0, 0, 0);
-        grid->_grid[1][3] = nnc(0, 0, 0);
-        grid->_grid[1][4] = nncEmpty();
+        grid->_grid[1][3] = nncEmpty();
+        grid->_grid[1][4] = nnc(0, 0, 0);
         
-        grid->_grid[2][0] = nnc(0, 0, 0);
+        grid->_grid[2][0] = nncEmpty();
         grid->_grid[2][1] = nnc(0, 0, 0);
         grid->_grid[2][2] = nncEmpty();
-        grid->_grid[2][3] = nnc(0, 0, 0);
+        grid->_grid[2][3] = nncEmpty();
         grid->_grid[2][4] = nnc(0, 0, 0);
         
-        grid->_grid[3][0] = nncEmpty();
+        grid->_grid[3][0] = nnc(0, 0, 0);
         grid->_grid[3][1] = nnc(0, 0, 0);
         grid->_grid[3][2] = nnc(0, 0, 0);
         grid->_grid[3][3] = nnc(0, 0, 0);
         grid->_grid[3][4] = nncEmpty();
         
-        grid->_grid[4][0] = nncEmpty();
-        grid->_grid[4][1] = nncEmpty();
-        grid->_grid[4][2] = nncEmpty();
+        grid->_grid[4][0] = nnc(0, 0, 0);
+        grid->_grid[4][1] = nnc(0, 0, 0);
+        grid->_grid[4][2] = nnc(0, 0, 0);
         grid->_grid[4][3] = nncEmpty();
-        grid->_grid[4][4] = nncEmpty();
+        grid->_grid[4][4] = nnc(0, 0, 0);
     }
     return grid;
 }

@@ -11,8 +11,6 @@
 		9A5AB76F1755321E00735EDB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7651755321E00735EDB /* Default-568h@2x.png */; };
 		9A5AB7701755321E00735EDB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7661755321E00735EDB /* Default.png */; };
 		9A5AB7711755321E00735EDB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7671755321E00735EDB /* Default@2x.png */; };
-		9A5AB7721755321E00735EDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7681755321E00735EDB /* InfoPlist.strings */; };
-		9A5AB7751755321E00735EDB /* nono-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB76E1755321E00735EDB /* nono-Info.plist */; };
 		9A5AB7801755327000735EDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77A1755327000735EDB /* AppDelegate.m */; };
 		9A5AB7811755327000735EDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77B1755327000735EDB /* main.m */; };
 		9A5AB7821755327000735EDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77F1755327000735EDB /* ViewController.m */; };
@@ -21,6 +19,7 @@
 		9A9A46511757F7010045649D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464E1757F7010045649D /* ViewController_iPad.xib */; };
 		9A9A46521757F7010045649D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464F1757F7010045649D /* ViewController_iPhone.xib */; };
 		9A9A46531757F7010045649D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464F1757F7010045649D /* ViewController_iPhone.xib */; };
+		9ADD5CC3175A751300CD7EEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD65E117555624002ED748 /* InfoPlist.strings */; };
 		9AFB08861754C8FA00391436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08851754C8FA00391436 /* UIKit.framework */; };
 		9AFB08881754C8FA00391436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08871754C8FA00391436 /* Foundation.framework */; };
 		9AFB088A1754C8FA00391436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08891754C8FA00391436 /* CoreGraphics.framework */; };
@@ -276,11 +275,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADD5CC3175A751300CD7EEF /* InfoPlist.strings in Resources */,
 				9A5AB76F1755321E00735EDB /* Default-568h@2x.png in Resources */,
 				9A5AB7701755321E00735EDB /* Default.png in Resources */,
 				9A5AB7711755321E00735EDB /* Default@2x.png in Resources */,
-				9A5AB7721755321E00735EDB /* InfoPlist.strings in Resources */,
-				9A5AB7751755321E00735EDB /* nono-Info.plist in Resources */,
 				9A9A46501757F7010045649D /* ViewController_iPad.xib in Resources */,
 				9A9A46521757F7010045649D /* ViewController_iPhone.xib in Resources */,
 			);

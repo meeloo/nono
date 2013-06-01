@@ -32,9 +32,11 @@
 - (IBAction)start:(id)sender
 {
     NonoGrid* grid = [NonoGrid randomGrid];
-    NonoSolver* solver = [[[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]] autorelease];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]] autorelease];
     NonoGrid* solution = [solver solve];
     NSAssert([grid isEqualToGrid:solution], @"Solution does is not equal to debug grid.");
+    ((UIButton*)sender).selected = NO;
+    self.view.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
 }
 
 @end

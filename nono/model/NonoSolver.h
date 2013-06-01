@@ -11,7 +11,7 @@
 
 @interface NonoSolver : NSObject
 
-- (id)initWithXEntries:(NSArray*)xEntries andYEntries:(NSArray*)yEntries;
+- (id)initWithColEntries:(NSArray*)colEntries andRowEntries:(NSArray*)rowEntries;
 
 - (NonoGrid*)solve;
 

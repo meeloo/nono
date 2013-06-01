@@ -27,13 +27,6 @@
     [super tearDown];
 }
 
-- (void)testPrint
-{
-    // Visual test only
-    NonoGrid* grid = [NonoGrid debugGrid];
-    [grid print];
-}
-
 - (void)testIsEqualToGrid
 {
     NonoGrid* grid1 = [NonoGrid debugGrid];
@@ -53,10 +46,10 @@
         STFail(@"Color in (0, 0) not empty.");
     }
     
-    color = [grid getColorAtX:2 andY:0];
+    color = [grid getColorAtX:3 andY:2];
     if (!nncEqual(color, nnc(0, 0, 0)))
     {
-        STFail(@"Color in (0, 0) not (0, 0, 0).");
+        STFail(@"Color in (3, 2) not (0, 0, 0).");
     }
 }
 
@@ -64,31 +57,31 @@
 {
     NonoGrid* grid = [NonoGrid debugGrid];
     NonoColor color = nnc(255, 128, 0);
-    [grid setColor:color AtX:0 andY:0];
+    [grid setColor:color atX:0 andY:0];
     if (!nncEqual(color, [grid getColorAtX:0 andY:0]))
     {
         STFail(@"Color in (0, 0) not equal to given color.");
     }
 }
 
-- (void)testXEntries
+- (void)testColEntries
 {
     NonoGrid* grid = [NonoGrid debugGrid];
-    NSArray* xEntries = [grid getXEntries];
+    NSArray* colEntries = [grid getColEntries];
     STFail(@"TODO - add X entries test");
 }
 
-- (void)testYEntries
+- (void)testRowEntries
 {
     NonoGrid* grid = [NonoGrid debugGrid];
-    NSArray* yEntries = [grid getYEntries];
+    NSArray* rowEntries = [grid getRowEntries];
     STFail(@"TODO - add Y entries test.");
 }
 
 - (void)testIsSolvedByGrid
 {
     NonoGrid* grid = [NonoGrid debugGrid];
-    NonoSolver* solver = [[[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]] autorelease];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]] autorelease];
     STAssertTrue([solver isSolvedByGrid:grid], @"Debug grid does not solve itself.");
 }
 
@@ -100,18 +93,28 @@
         @autoreleasepool
         {
             NonoGrid* grid = [NonoGrid randomGrid];
-            NonoSolver* solver = [[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]];
+            NonoSolver* solver = [[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]];
             STAssertTrue([solver isSolvedByGrid:grid], @"Random grid does not solve itself.");
         }
     }
 }*/
 
-- (void)testSolve
+- (void)testSolveDebug
 {
-    NonoGrid* grid = [NonoGrid randomGrid];
-    NonoSolver* solver = [[[NonoSolver alloc] initWithXEntries:[grid getXEntries] andYEntries:[grid getYEntries]] autorelease];
+    NonoGrid* grid = [NonoGrid debugGrid];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]] autorelease];
     NonoGrid* solution = [solver solve];
     STAssertTrue([grid isEqualToGrid:solution], @"Solution does is not equal to debug grid.");
+}
+
+
+- (void)testSolveRandom
+{
+    NonoGrid* grid = [NonoGrid randomGrid];
+    NonoSolver* solver = [[[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]] autorelease];
+    NSLog([solver hasUniqueSolution] ? @"Random puzzle has a unique solution." : @"Random puzzle has more than one solution.");
+    NonoGrid* solution = [solver solve];
+    STAssertTrue([grid isEqualToGrid:solution], @"Solution does is not equal to random grid.");
 }
 
 

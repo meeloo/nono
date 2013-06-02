@@ -37,33 +37,6 @@
     }
 }
 
-- (void)testGetColor
-{
-    NonoGrid* grid = [NonoGrid debugGrid];
-    NonoColor color = [grid getColorAtX:0 andY:0];
-    if (!nncEqual(color, nncEmpty()))
-    {
-        STFail(@"Color in (0, 0) not empty.");
-    }
-    
-    color = [grid getColorAtX:3 andY:2];
-    if (!nncEqual(color, nnc(0, 0, 0)))
-    {
-        STFail(@"Color in (3, 2) not (0, 0, 0).");
-    }
-}
-
-- (void)testSetColor
-{
-    NonoGrid* grid = [NonoGrid debugGrid];
-    NonoColor color = nnc(255, 128, 0);
-    [grid setColor:color atX:0 andY:0];
-    if (!nncEqual(color, [grid getColorAtX:0 andY:0]))
-    {
-        STFail(@"Color in (0, 0) not equal to given color.");
-    }
-}
-
 - (void)testColEntries
 {
     NonoGrid* grid = [NonoGrid debugGrid];

@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIView* gridView;
+
 - (IBAction)start:(id)sender;
 
 @end

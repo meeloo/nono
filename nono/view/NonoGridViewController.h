@@ -12,6 +12,8 @@
 
 @interface NonoGridViewController : UIViewController
 
+@property (nonatomic, retain) UIColor* currentColor;
+
 - (id)initWithGrid:(NonoGrid*)grid;
 
 @end

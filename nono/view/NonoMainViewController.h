@@ -10,4 +10,7 @@
 
 @interface NonoMainViewController : UIViewController
 
+- (IBAction)playButtonPressed:(id)sender;
+- (IBAction)createButtonPressed:(id)sender;
+
 @end

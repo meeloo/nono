@@ -17,6 +17,10 @@
 		9A5AB7811755327000735EDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77B1755327000735EDB /* main.m */; };
 		9A5AB7821755327000735EDB /* NonoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77F1755327000735EDB /* NonoMainViewController.m */; };
 		9A5AB78A175533CC00735EDB /* NonoEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB789175533CC00735EDB /* NonoEntry.m */; };
+		9A808993175CA0FB002DACBE /* NonoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A808991175CA0FB002DACBE /* NonoPlayViewController.m */; };
+		9A808994175CA0FB002DACBE /* NonoPlayViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A808992175CA0FB002DACBE /* NonoPlayViewController_iPad.xib */; };
+		9A808996175CA130002DACBE /* NonoPlayViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A808995175CA130002DACBE /* NonoPlayViewController_iPhone.xib */; };
+		9A8089A3175CCEDB002DACBE /* NonoGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8089A1175CCEDB002DACBE /* NonoGridViewController.m */; };
 		9A9A46501757F7010045649D /* NonoMainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464E1757F7010045649D /* NonoMainViewController_iPad.xib */; };
 		9A9A46521757F7010045649D /* NonoMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */; };
 		9A9A46531757F7010045649D /* NonoMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */; };
@@ -32,7 +36,6 @@
 		9AFD65E617555624002ED748 /* nonoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65E517555624002ED748 /* nonoTests.m */; };
 		9AFD65EC17555752002ED748 /* NonoEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB789175533CC00735EDB /* NonoEntry.m */; };
 		9AFD65ED17555752002ED748 /* NonoGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65AC17553BB6002ED748 /* NonoGrid.m */; };
-		9AFD65EE17555752002ED748 /* NonoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AB77F1755327000735EDB /* NonoMainViewController.m */; };
 		9AFD65F117556181002ED748 /* NonoSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65F017556181002ED748 /* NonoSolver.m */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,12 @@
 		9A5AB77F1755327000735EDB /* NonoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoMainViewController.m; sourceTree = "<group>"; };
 		9A5AB7861755335E00735EDB /* NonoEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonoEntry.h; sourceTree = "<group>"; };
 		9A5AB789175533CC00735EDB /* NonoEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoEntry.m; sourceTree = "<group>"; };
+		9A808990175CA0FB002DACBE /* NonoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonoPlayViewController.h; sourceTree = "<group>"; };
+		9A808991175CA0FB002DACBE /* NonoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoPlayViewController.m; sourceTree = "<group>"; };
+		9A808992175CA0FB002DACBE /* NonoPlayViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoPlayViewController_iPad.xib; sourceTree = "<group>"; };
+		9A808995175CA130002DACBE /* NonoPlayViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoPlayViewController_iPhone.xib; sourceTree = "<group>"; };
+		9A8089A0175CCEDB002DACBE /* NonoGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonoGridViewController.h; sourceTree = "<group>"; };
+		9A8089A1175CCEDB002DACBE /* NonoGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoGridViewController.m; sourceTree = "<group>"; };
 		9A9A464E1757F7010045649D /* NonoMainViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoMainViewController_iPad.xib; sourceTree = "<group>"; };
 		9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		9ADD5CC4175ABD5200CD7EEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -159,6 +168,12 @@
 				9A5AB77F1755327000735EDB /* NonoMainViewController.m */,
 				9A9A464E1757F7010045649D /* NonoMainViewController_iPad.xib */,
 				9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */,
+				9A808990175CA0FB002DACBE /* NonoPlayViewController.h */,
+				9A808991175CA0FB002DACBE /* NonoPlayViewController.m */,
+				9A808992175CA0FB002DACBE /* NonoPlayViewController_iPad.xib */,
+				9A808995175CA130002DACBE /* NonoPlayViewController_iPhone.xib */,
+				9A8089A0175CCEDB002DACBE /* NonoGridViewController.h */,
+				9A8089A1175CCEDB002DACBE /* NonoGridViewController.m */,
 			);
 			name = view;
 			path = nono/view;
@@ -260,6 +275,7 @@
 		9AFB087A1754C8FA00391436 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = Nono;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Charles Francoise";
 			};
@@ -293,6 +309,8 @@
 				9A9A46501757F7010045649D /* NonoMainViewController_iPad.xib in Resources */,
 				9A9A46521757F7010045649D /* NonoMainViewController_iPhone.xib in Resources */,
 				9A4C8505175B89C7007BCE3F /* 5grid.png in Resources */,
+				9A808994175CA0FB002DACBE /* NonoPlayViewController_iPad.xib in Resources */,
+				9A808996175CA130002DACBE /* NonoPlayViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +352,8 @@
 				9AFD65AD17553BB6002ED748 /* NonoGrid.m in Sources */,
 				9AFD65F117556181002ED748 /* NonoSolver.m in Sources */,
 				9A4C850B175B8F7A007BCE3F /* Utilities.m in Sources */,
+				9A808993175CA0FB002DACBE /* NonoPlayViewController.m in Sources */,
+				9A8089A3175CCEDB002DACBE /* NonoGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +363,6 @@
 			files = (
 				9AFD65EC17555752002ED748 /* NonoEntry.m in Sources */,
 				9AFD65ED17555752002ED748 /* NonoGrid.m in Sources */,
-				9AFD65EE17555752002ED748 /* NonoMainViewController.m in Sources */,
 				9AFD65E617555624002ED748 /* nonoTests.m in Sources */,
 				9A145BAA17556A030028FF7F /* NonoSolver.m in Sources */,
 			);

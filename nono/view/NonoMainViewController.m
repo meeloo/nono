@@ -7,6 +7,8 @@
 //
 
 #import "NonoMainViewController.h"
+#import "NonoPlayViewController.h"
+#import "NonoGrid.h"
 
 @interface NonoMainViewController ()
 
@@ -29,6 +31,30 @@
 - (void)dealloc
 {
     [super dealloc];
+}
+
+
+- (IBAction)playButtonPressed:(id)sender
+{
+    NonoGrid* grid = [NonoGrid debugGrid];
+    NonoPlayViewController* playViewController = [[[NonoPlayViewController alloc] initWithSolution:grid] autorelease];
+    
+    [self.parentViewController addChildViewController:playViewController];
+    [self.parentViewController transitionFromViewController:self
+                                           toViewController:playViewController
+                                                   duration:0.0
+                                                    options:UIViewAnimationOptionTransitionNone
+                                                 animations:^{}
+                                                 completion:^(BOOL success) {
+                                                     if (success)
+                                                     {
+                                                         [self removeFromParentViewController];
+                                                     }
+                                                 }];
+}
+
+- (IBAction)createButtonPressed:(id)sender
+{
 }
 
 @end

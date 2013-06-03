@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class NonoMainViewController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) NonoMainViewController *viewController;
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NonoGrid.h"
+
+@class NonoGrid;
 
 @interface NonoSolver : NSObject
 

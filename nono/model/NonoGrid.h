@@ -28,6 +28,7 @@
 
 - (NSArray*)getColEntries;
 - (NSArray*)getRowEntries;
+- (NSArray*)getColors;
 
 - (void)print;
 

@@ -196,6 +196,37 @@
     return rowEntries;
 }
 
+- (NSArray*)getColors
+{
+    NSMutableArray* colors = [NSMutableArray array];
+    
+    for (NSUInteger x = 0; x < _width; x++)
+    {
+        for (NSUInteger y = 0; y < _height; y++)
+        {
+            NonoColor color = _grid[x][y];
+            BOOL colorIsInArray = NO;
+            for (NSData* prevColorData in colors)
+            {
+                NonoColor prevColor;
+                [prevColorData getBytes:&prevColor length:sizeof(NonoColor)];
+                if (nncEqual(color, prevColor))
+                {
+                    colorIsInArray = YES;
+                    break;
+                }
+            }
+            if (!colorIsInArray)
+            {
+                NSData* colorData = [NSData dataWithBytes:&color length:sizeof(NonoColor)];
+                [colors addObject:colorData];
+            }
+        }
+    }
+    return colors;
+}
+
+
 + (id)randomGrid
 {
     NonoGrid* grid = [self.class gridWithWidth:25 andHeight:25];

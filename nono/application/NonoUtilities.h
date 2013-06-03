@@ -10,7 +10,7 @@
 
 #import "NonoColor.h"
 
-@interface Utilities : NSObject
+@interface NonoUtilities : NSObject
 
 + (UIColor*)colorWithNonoColor:(NonoColor)nonoColor;
 + (NonoColor)nonoColorWithColor:(UIColor*)color;

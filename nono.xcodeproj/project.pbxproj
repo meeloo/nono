@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A145BAA17556A030028FF7F /* NonoSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD65F017556181002ED748 /* NonoSolver.m */; };
 		9A4C8505175B89C7007BCE3F /* 5grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4C8504175B89C7007BCE3F /* 5grid.png */; };
-		9A4C850B175B8F7A007BCE3F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C850A175B8F7A007BCE3F /* Utilities.m */; };
+		9A4C850B175B8F7A007BCE3F /* NonoUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C850A175B8F7A007BCE3F /* NonoUtilities.m */; };
 		9A5AB76F1755321E00735EDB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7651755321E00735EDB /* Default-568h@2x.png */; };
 		9A5AB7701755321E00735EDB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7661755321E00735EDB /* Default.png */; };
 		9A5AB7711755321E00735EDB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5AB7671755321E00735EDB /* Default@2x.png */; };
@@ -41,8 +41,8 @@
 
 /* Begin PBXFileReference section */
 		9A4C8504175B89C7007BCE3F /* 5grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5grid.png; sourceTree = "<group>"; };
-		9A4C8509175B8F7A007BCE3F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		9A4C850A175B8F7A007BCE3F /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		9A4C8509175B8F7A007BCE3F /* NonoUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonoUtilities.h; sourceTree = "<group>"; };
+		9A4C850A175B8F7A007BCE3F /* NonoUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoUtilities.m; sourceTree = "<group>"; };
 		9A5AB7651755321E00735EDB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9A5AB7661755321E00735EDB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9A5AB7671755321E00735EDB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -139,8 +139,8 @@
 				9A5AB7791755327000735EDB /* AppDelegate.h */,
 				9A5AB77A1755327000735EDB /* AppDelegate.m */,
 				9A5AB77B1755327000735EDB /* main.m */,
-				9A4C8509175B8F7A007BCE3F /* Utilities.h */,
-				9A4C850A175B8F7A007BCE3F /* Utilities.m */,
+				9A4C8509175B8F7A007BCE3F /* NonoUtilities.h */,
+				9A4C850A175B8F7A007BCE3F /* NonoUtilities.m */,
 			);
 			name = application;
 			path = nono/application;
@@ -351,7 +351,7 @@
 				9A5AB78A175533CC00735EDB /* NonoEntry.m in Sources */,
 				9AFD65AD17553BB6002ED748 /* NonoGrid.m in Sources */,
 				9AFD65F117556181002ED748 /* NonoSolver.m in Sources */,
-				9A4C850B175B8F7A007BCE3F /* Utilities.m in Sources */,
+				9A4C850B175B8F7A007BCE3F /* NonoUtilities.m in Sources */,
 				9A808993175CA0FB002DACBE /* NonoPlayViewController.m in Sources */,
 				9A8089A3175CCEDB002DACBE /* NonoGridViewController.m in Sources */,
 			);

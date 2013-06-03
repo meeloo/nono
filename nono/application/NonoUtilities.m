@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Charles Francoise. All rights reserved.
 //
 
-#import "Utilities.h"
+#import "NonoUtilities.h"
 
-@implementation Utilities
+@implementation NonoUtilities
 
 + (UIColor*)colorWithNonoColor:(NonoColor)nonoColor
 {

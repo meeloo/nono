@@ -53,8 +53,10 @@ static const CGFloat BUTTON_WIDTH = 40.0f;
         [data getBytes:&color length:sizeof(NonoColor)];
         
         UIButton* colorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        colorButton.frame = frame;
         colorButton.backgroundColor = [NonoUtilities colorWithNonoColor:color];
-        [colorButton addTarget:self action:@selector(colorTouched:) forControlEvents:UIControlEventTouchDown];
+        [colorButton addTarget:self action:@selector(colorTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:colorButton];
         
         frame.origin.y += BUTTON_WIDTH + Y_SPACE;
     }

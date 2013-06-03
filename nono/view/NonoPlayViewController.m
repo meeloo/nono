@@ -45,7 +45,7 @@
         [self addChildViewController:_gridViewController];
         [_gridViewController didMoveToParentViewController:self];
         
-        _colorChooserViewController = [[NonoColorChooserViewController alloc] initWithColors:[_playGrid getColors]];
+        _colorChooserViewController = [[NonoColorChooserViewController alloc] initWithColors:[_solution getColors]];
         [self addChildViewController:_colorChooserViewController];
         [_colorChooserViewController didMoveToParentViewController:self];
     }

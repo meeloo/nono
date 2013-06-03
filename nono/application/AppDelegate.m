@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "NonoMainViewController.h"
 
 @implementation AppDelegate
 
@@ -21,20 +21,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*NonoGrid* grid = [NonoGrid randomGrid];
-    NonoSolver* solver = [[[NonoSolver alloc] initWithColEntries:[grid getColEntries] andRowEntries:[grid getRowEntries]] autorelease];
-    NonoGrid* solution = [solver solve];
-    NSAssert([grid isEqualToGrid:solution], @"Solution does is not equal to debug grid.");*/
-    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil] autorelease];
+        self.viewController = [[[NonoMainViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil] autorelease];
     }
     else
     {
-        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil] autorelease];
+        self.viewController = [[[NonoMainViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil] autorelease];
     }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

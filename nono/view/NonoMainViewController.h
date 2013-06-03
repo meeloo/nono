@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-@property (nonatomic, retain) IBOutlet UIView* gridView;
-
-- (IBAction)start:(id)sender;
+@interface NonoMainViewController : UIViewController
 
 @end

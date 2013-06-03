@@ -26,6 +26,8 @@
     self = [super init];
     if (self)
     {
+        self.wantsFullScreenLayout = YES;
+        
         _playGrid = [grid retain];
         
         _gridBackgroundView = [[UIView alloc] init];
@@ -73,21 +75,21 @@
         }
     }
     
-    frame.size.width = gridImage.size.width / numGridsX;
-    frame.size.height = gridImage.size.height / numGridsY;
-    frame.origin.x = (self.view.frame.size.width - frame.size.width) * .5f;
-    frame.origin.y = 20.0f;
+    frame = CGRectMake(0.0f,
+                       0.0f,
+                       gridImage.size.width / numGridsX,
+                       gridImage.size.height / numGridsY);
     self.gridBackgroundView.frame = frame;
     
     frame.size.width = 100.0f / scaleFactor;
     frame.size.height = 100.0f / scaleFactor;
     for (NSUInteger x = 0; x < self.playGrid.width; x++)
     {
-        frame.origin.x = x * (frame.size.width + 1) + (self.gridBackgroundView.frame.origin.x + 1);
+        frame.origin.x = x * (frame.size.width + 1) + 1;
         NSMutableArray* col = self.cellViews[x];
         for (NSUInteger y = 0; y < self.playGrid.height; y++)
         {
-            frame.origin.y = y * (frame.size.height + 1) + (self.gridBackgroundView.frame.origin.y + 1);
+            frame.origin.y = y * (frame.size.height + 1) + 1;
             UIView* cellView = [[[UIView alloc] initWithFrame:frame] autorelease];
             cellView.tag = x * self.playGrid.width + y;
             
@@ -100,6 +102,8 @@
     }
     
     [self updateCells];
+    
+    self.view.frame = self.gridBackgroundView.frame;
 }
 
 - (void)didReceiveMemoryWarning

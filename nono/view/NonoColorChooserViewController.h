@@ -10,4 +10,8 @@
 
 @interface NonoColorChooserViewController : UIViewController
 
+@property (nonatomic, readonly) UIColor* selectedColor;
+
+- (id)initWithColors:(NSArray*)colors;
+
 @end

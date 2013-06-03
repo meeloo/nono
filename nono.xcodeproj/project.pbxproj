@@ -26,6 +26,8 @@
 		9A9A46531757F7010045649D /* NonoMainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */; };
 		9ADD5CC3175A751300CD7EEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD65E117555624002ED748 /* InfoPlist.strings */; };
 		9ADD5CC5175ABD5200CD7EEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADD5CC4175ABD5200CD7EEF /* QuartzCore.framework */; };
+		9AE7C31C175D3BE40014FAFF /* NonoColorChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7C31A175D3BE40014FAFF /* NonoColorChooserViewController.m */; };
+		9AE7C31D175D3BE40014FAFF /* NonoColorChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AE7C31B175D3BE40014FAFF /* NonoColorChooserViewController.xib */; };
 		9AFB08861754C8FA00391436 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08851754C8FA00391436 /* UIKit.framework */; };
 		9AFB08881754C8FA00391436 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08871754C8FA00391436 /* Foundation.framework */; };
 		9AFB088A1754C8FA00391436 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFB08891754C8FA00391436 /* CoreGraphics.framework */; };
@@ -65,6 +67,9 @@
 		9A9A464E1757F7010045649D /* NonoMainViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoMainViewController_iPad.xib; sourceTree = "<group>"; };
 		9A9A464F1757F7010045649D /* NonoMainViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoMainViewController_iPhone.xib; sourceTree = "<group>"; };
 		9ADD5CC4175ABD5200CD7EEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9AE7C319175D3BE40014FAFF /* NonoColorChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonoColorChooserViewController.h; sourceTree = "<group>"; };
+		9AE7C31A175D3BE40014FAFF /* NonoColorChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonoColorChooserViewController.m; sourceTree = "<group>"; };
+		9AE7C31B175D3BE40014FAFF /* NonoColorChooserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NonoColorChooserViewController.xib; sourceTree = "<group>"; };
 		9AFB08821754C8FA00391436 /* nono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nono.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFB08851754C8FA00391436 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AFB08871754C8FA00391436 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,6 +179,9 @@
 				9A808995175CA130002DACBE /* NonoPlayViewController_iPhone.xib */,
 				9A8089A0175CCEDB002DACBE /* NonoGridViewController.h */,
 				9A8089A1175CCEDB002DACBE /* NonoGridViewController.m */,
+				9AE7C319175D3BE40014FAFF /* NonoColorChooserViewController.h */,
+				9AE7C31A175D3BE40014FAFF /* NonoColorChooserViewController.m */,
+				9AE7C31B175D3BE40014FAFF /* NonoColorChooserViewController.xib */,
 			);
 			name = view;
 			path = nono/view;
@@ -311,6 +319,7 @@
 				9A4C8505175B89C7007BCE3F /* 5grid.png in Resources */,
 				9A808994175CA0FB002DACBE /* NonoPlayViewController_iPad.xib in Resources */,
 				9A808996175CA130002DACBE /* NonoPlayViewController_iPhone.xib in Resources */,
+				9AE7C31D175D3BE40014FAFF /* NonoColorChooserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +363,7 @@
 				9A4C850B175B8F7A007BCE3F /* NonoUtilities.m in Sources */,
 				9A808993175CA0FB002DACBE /* NonoPlayViewController.m in Sources */,
 				9A8089A3175CCEDB002DACBE /* NonoGridViewController.m in Sources */,
+				9AE7C31C175D3BE40014FAFF /* NonoColorChooserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

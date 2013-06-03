@@ -75,8 +75,9 @@
     
     frame.size.width = gridImage.size.width / numGridsX;
     frame.size.height = gridImage.size.height / numGridsY;
+    frame.origin.x = (self.view.frame.size.width - frame.size.width) * .5f;
+    frame.origin.y = 20.0f;
     self.gridBackgroundView.frame = frame;
-    self.gridBackgroundView.center = self.view.center;
     
     frame.size.width = 100.0f / scaleFactor;
     frame.size.height = 100.0f / scaleFactor;

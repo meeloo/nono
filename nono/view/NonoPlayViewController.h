@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class NonoGrid;
+@class NonoColorChooser;
 
 @interface NonoPlayViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet NonoColorChooser* colorChooser;
+
 - (id)initWithSolution:(NonoGrid*)solution;
+
+- (IBAction)colorChanged:(NonoColorChooser*)sender;
 
 @end

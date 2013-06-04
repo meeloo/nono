@@ -1,12 +1,12 @@
 //
-//  NonoColorChooserViewController.m
+//  NonoColorChooser.m
 //  nono
 //
 //  Created by Charles Francoise on 6/3/13.
 //  Copyright (c) 2013 Charles Francoise. All rights reserved.
 //
 
-#import "NonoColorChooserViewController.h"
+#import "NonoColorChooser.h"
 
 #import "NonoGrid.h"
 
@@ -17,20 +17,21 @@ static const CGFloat Y_MARGIN = 2.0f;
 static const CGFloat Y_SPACE = 4.0f;
 static const CGFloat BUTTON_WIDTH = 40.0f;
 
-@interface NonoColorChooserViewController ()
+@interface NonoColorChooser ()
 
-@property (nonatomic, retain) NSArray* colors;
+@property (nonatomic, copy) NSArray* colors;
 
 @end
 
-@implementation NonoColorChooserViewController
+@implementation NonoColorChooser
 
-- (id)initWithColors:(NSArray*) colors
+- (id)initWithColors:(NSArray*)colors
 {
-    self = [super initWithNibName:@"NonoColorChooserViewController" bundle:nil];
+    self = [super init];
     if (self)
     {
-        _colors = [colors retain];
+        [self setColors:colors];
+        [self setupButtons];
     }
     return self;
 }
@@ -41,10 +42,12 @@ static const CGFloat BUTTON_WIDTH = 40.0f;
     [super dealloc];
 }
 
-- (void)viewDidLoad
+- (void)setupButtons
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    for (UIView* subview in self.subviews)
+    {
+        [subview removeFromSuperview];
+    }
     
     CGRect frame = CGRectMake(X_MARGIN, Y_MARGIN, BUTTON_WIDTH, BUTTON_WIDTH);
     for (NSData* data in self.colors)
@@ -55,22 +58,16 @@ static const CGFloat BUTTON_WIDTH = 40.0f;
         UIButton* colorButton = [UIButton buttonWithType:UIButtonTypeCustom];
         colorButton.frame = frame;
         colorButton.backgroundColor = [NonoUtilities colorWithNonoColor:color];
-        [self.view addSubview:colorButton];
+        [self addSubview:colorButton];
         [colorButton addTarget:self action:@selector(colorTouched:) forControlEvents:UIControlEventTouchUpInside];
         
         frame.origin.x += BUTTON_WIDTH + Y_SPACE;
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (UIColor*)selectedColor
 {
-    for (UIButton* colorButton in self.view.subviews)
+    for (UIButton* colorButton in self.subviews)
     {
         if (colorButton.selected)
         {
@@ -83,11 +80,30 @@ static const CGFloat BUTTON_WIDTH = 40.0f;
 
 - (void)colorTouched:(UIButton*)colorButton
 {
-    for (UIButton* button in self.view.subviews)
+    for (UIButton* button in self.subviews)
     {
         button.selected = NO;
     }
     colorButton.selected = YES;
+    
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+- (void)setColors:(NSArray *)colors
+{
+    if (_colors != nil)
+    {
+        [_colors release];
+    }
+    _colors = [colors copy];
+    
+    [self setupButtons];
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    frame.size.height = Y_MARGIN + Y_MARGIN + BUTTON_WIDTH;
+    [super setFrame:frame];
 }
 
 @end

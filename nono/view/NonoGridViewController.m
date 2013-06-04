@@ -117,15 +117,8 @@
     UIView* cellView = (UIView*)tapRecognizer.view;
     NSUInteger x = cellView.tag / self.playGrid.width;
     NSUInteger y = cellView.tag % self.playGrid.width;
-    NonoColor color = self.playGrid.grid[x][y];
-    if (nncEqual(color, nncEmpty()))
-    {
-        self.playGrid.grid[x][y] = nnc(0, 0, 0);
-    }
-    else
-    {
-        self.playGrid.grid[x][y] = nncEmpty();
-    }
+    self.playGrid.grid[x][y] = [NonoUtilities nonoColorWithColor:self.currentColor];
+    
     [self updateCells];
 }
 

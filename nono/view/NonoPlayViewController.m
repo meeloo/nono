@@ -8,7 +8,7 @@
 
 #import "NonoPlayViewController.h"
 #import "NonoGridViewController.h"
-#import "NonoColorChooserViewController.h"
+#import "NonoColorChooser.h"
 
 #import "NonoGrid.h"
 
@@ -18,7 +18,6 @@
 @property (nonatomic, retain) NonoGrid* playGrid;
 
 @property (nonatomic, retain) NonoGridViewController* gridViewController;
-@property (nonatomic, retain) NonoColorChooserViewController * colorChooserViewController;
 
 @end
 
@@ -44,18 +43,16 @@
         _gridViewController = [[NonoGridViewController alloc] initWithGrid:_playGrid];
         [self addChildViewController:_gridViewController];
         [_gridViewController didMoveToParentViewController:self];
-        
-        _colorChooserViewController = [[NonoColorChooserViewController alloc] initWithColors:[_solution getColors]];
-        [self addChildViewController:_colorChooserViewController];
-        [_colorChooserViewController didMoveToParentViewController:self];
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [_colorChooser release];
     [_gridViewController release];
-    [_colorChooserViewController release];
+    [_solution release];
+    [_playGrid release];
     [super dealloc];
 }
 
@@ -71,18 +68,18 @@
     gridView.frame = frame;
     [self.view addSubview:gridView];
     
-    UIView* colorChooserView = self.colorChooserViewController.view;
-    frame = colorChooserView.frame;
-    frame.origin.x = (self.view.frame.size.width - frame.size.width) / 2.0f;
-    frame.origin.y = gridView.frame.origin.y + gridView.frame.size.height + 40.0f;
-    colorChooserView.frame = frame;
-    [self.view addSubview:colorChooserView];
+    self.colorChooser.colors = [self.solution getColors];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)colorChanged:(NonoColorChooser*)colorChooser
+{
+    self.gridViewController.currentColor = colorChooser.selectedColor;
 }
 
 @end

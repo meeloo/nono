@@ -1,5 +1,5 @@
 //
-//  NonoColorChooserViewController.h
+//  NonoColorChooser.h
 //  nono
 //
 //  Created by Charles Francoise on 6/3/13.
@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NonoColorChooserViewController : UIViewController
+@interface NonoColorChooser : UIControl
 
 @property (nonatomic, readonly) UIColor* selectedColor;
 
 - (id)initWithColors:(NSArray*)colors;
+
+- (void)setColors:(NSArray*)colors;
 
 @end
